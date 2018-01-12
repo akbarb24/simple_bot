@@ -13,7 +13,7 @@ public class BotHandler extends TelegramLongPollingBot {
             {"hi", "hello", "hoi"},
             {"What's up?", "Yes", "Hi!"},
             //
-            {"How r you", "kenalan yuk"},
+            {"how r you", "how are you", "what's up"},
             {"Fine, thanks!", "Not well", "I'm okay"},
             //default
             {"Sorry I'm Busy"}
