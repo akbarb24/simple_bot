@@ -21,7 +21,6 @@ public class BotHandler extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        System.out.println(update.getMessage().getText());
 
         String response = responseMsg(update.getMessage().getText());
         if(update.getMessage().getText().equals("/start")){
@@ -66,7 +65,6 @@ public class BotHandler extends TelegramLongPollingBot {
         2: response is found
         */
         while (response == 0){
-            System.out.println(">> " + txInput);
             if(inResponse(txInput.toLowerCase(), textMsg[j*2])){
                 int r = (int)Math.floor(Math.random()*textMsg[(j*2)+1].length);
                 txOutput = textMsg[(j*2)+1][r];
