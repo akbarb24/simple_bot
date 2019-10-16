@@ -4,8 +4,8 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class BotHandler extends TelegramLongPollingBot {
-    private final String BOT_TOKEN = "your bot token";
-    private final String BOT_USERNAME = "your bot username";
+    private final String BOT_TOKEN = "your token";
+    private final String BOT_USERNAME = "your username bot";
     private String [][] textMsg = {
             {"/start"},
             {"Hello ", "Hi "},
@@ -21,6 +21,8 @@ public class BotHandler extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        System.out.println(update.getMessage().getText());
+
         String response = responseMsg(update.getMessage().getText());
         if(update.getMessage().getText().equals("/start")){
             response += update.getMessage().getChat().getFirstName();
@@ -53,7 +55,7 @@ public class BotHandler extends TelegramLongPollingBot {
                         txInput.charAt(txInput.length()-1) == '!' ||
                         txInput.charAt(txInput.length()-1) == '?'
                 ){
-            txInput.substring(0, txInput.length()-1);
+            txInput = txInput.substring(0, txInput.length()-1);
         }
         txInput.trim();
         byte response = 0;
@@ -64,6 +66,7 @@ public class BotHandler extends TelegramLongPollingBot {
         2: response is found
         */
         while (response == 0){
+            System.out.println(">> " + txInput);
             if(inResponse(txInput.toLowerCase(), textMsg[j*2])){
                 int r = (int)Math.floor(Math.random()*textMsg[(j*2)+1].length);
                 txOutput = textMsg[(j*2)+1][r];
